@@ -22,6 +22,7 @@ PIMMscape · 파주 평화누리 캠핑장 숲속 카라반 테마 — 기획 �
 | [`docs/production-plan.html`](docs/production-plan.html) | **제작계획** — 스토리 구조 분석, 19시퀀스 시간/장치 밀도 분석, P0~P5 실행계획, 장치 BOM 33종, 리스크 10건, 결정사항 7건 |
 | [`docs/theme-tone.html`](docs/theme-tone.html) | **테마톤 분석** — 컨셉 이미지 47컷 색상 실측, 조명 3상태, 재질 언어, 시공 컬러 스펙, 설계 충돌 4건 |
 | [`docs/playtime-estimate.html`](docs/playtime-estimate.html) | **플레이타임 산정** — 12세 인지부하 모델. 19시퀀스 풀이 절차 분해, 스텝별 소요시간, 팀 편차 분포, 병목 4곳, 6분 31초 절감 튜닝안 |
+| [`docs/module-and-build.html`](docs/module-and-build.html) | **모듈 구성과 내부 시공** — 벽 매립 불가 조건에서의 모듈+카트리지 전략. 표준 캐리어 규격, 19시퀀스 → 9유닛 통합안, 배선 백본, 3존 차등 마감, 견적 요청 골격 |
 
 HTML을 그대로 열면 됩니다. 별도 빌드나 의존성이 없습니다.
 
@@ -55,8 +56,10 @@ reference/
 `timing_tuning.py`는 튜닝안 적용 전후를 비교합니다. 두 스크립트 모두 의존성이 없습니다.
 
 ```
-python3 reference/model/timing_model.py    # 스텝별 산정표 + 분포
-python3 reference/model/timing_tuning.py   # 튜닝 전후 비교
+python3 reference/model/timing_model.py          # 스텝별 산정표 + 분포
+python3 reference/model/timing_tuning.py         # 튜닝 전후 비교
+python3 reference/model/module_consolidation.py  # 시퀀스 → 물리 유닛 매핑
+python3 reference/model/finish_takeoff.py        # 내부 마감 물량 산출
 ```
 
 `extracted/step-progression.data.js`에 19시퀀스 전체 데이터(`STEPS` 배열)가 들어 있습니다 —

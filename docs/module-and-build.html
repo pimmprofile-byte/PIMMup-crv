@@ -1,0 +1,399 @@
+<title>카라반 모듈 구성과 시공</title>
+<style>
+:root{
+  --bg:#070C09; --bg2:#0C1410; --bg3:#111C15; --card:#0D1611;
+  --line:#1F3527; --line-soft:rgba(0,255,153,.09);
+  --ink:#9DBFAD; --ink-dim:#5E8271; --ink-bright:#ECF5EF;
+  --gi:#00FF99; --seung:#66FFCC; --jeon:#9966FF; --gyeol:#FFDD88;
+  --amber:#D8A04A; --warn:#E07A52; --alert:#FF6B6B;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR","Segoe UI",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;background:var(--bg);}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.72;font-size:15px;padding-bottom:100px;-webkit-font-smoothing:antialiased;}
+.wrap{max-width:1200px;margin:0 auto;padding:0 26px;}
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,12,9,.95);backdrop-filter:blur(18px);border-bottom:1px solid var(--line-soft);}
+.nav-in{max-width:1200px;margin:0 auto;padding:0 26px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.nav-logo{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--gi);letter-spacing:.1em;white-space:nowrap;}
+.nav-links{display:flex;gap:2px;overflow-x:auto;}
+.nav-links a{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--ink-dim);text-decoration:none;padding:6px 9px;border:1px solid transparent;white-space:nowrap;transition:color .18s,border-color .18s;}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--gi);border-color:var(--line);outline:none;}
+
+.hero{padding:52px 0 34px;border-bottom:1px solid var(--line-soft);}
+.eyebrow{font-family:var(--mono);font-size:11px;color:var(--gi);letter-spacing:.26em;display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gi);flex:none;}
+h1{font-size:41px;line-height:1.18;color:var(--ink-bright);font-weight:700;text-wrap:balance;margin-bottom:10px;letter-spacing:-.01em;}
+h1 em{font-style:normal;color:var(--gi);}
+.hero-sub{font-family:var(--mono);font-size:12px;color:var(--seung);letter-spacing:.16em;margin-bottom:22px;}
+.hero-lead{font-size:16px;color:var(--ink-bright);line-height:1.85;max-width:72ch;margin-bottom:26px;}
+.head-fig{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);}
+.hf{background:var(--card);padding:18px 20px;}
+.hf dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--ink-dim);margin-bottom:7px;text-transform:uppercase;}
+.hf dd{font-family:var(--mono);font-size:29px;color:var(--gi);font-variant-numeric:tabular-nums;line-height:1.1;}
+.hf dd small{font-size:13px;color:var(--ink-dim);display:block;margin-top:5px;font-family:var(--sans);letter-spacing:0;}
+
+section{padding:52px 0 0;}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;border-bottom:1px solid var(--line);padding-bottom:12px;}
+.sec-no{font-family:var(--mono);font-size:11px;color:var(--gi);letter-spacing:.14em;flex:none;}
+h2{font-size:26px;color:var(--ink-bright);font-weight:700;text-wrap:balance;letter-spacing:-.01em;}
+.sec-note{font-size:14.5px;color:var(--ink);margin:16px 0 24px;max-width:74ch;}
+h3{font-size:17px;color:var(--ink-bright);font-weight:600;margin:34px 0 12px;text-wrap:balance;}
+h3 .t{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-dim);margin-left:9px;font-weight:400;}
+p{margin-bottom:12px;max-width:76ch;}
+strong{color:var(--ink-bright);font-weight:600;}
+em.hl{font-style:normal;color:var(--gi);}
+
+.tw{overflow-x:auto;border:1px solid var(--line);margin:18px 0 24px;}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:700px;}
+th{background:var(--bg3);color:var(--ink-bright);text-align:left;padding:10px 13px;font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;font-weight:500;border-bottom:1px solid var(--line);white-space:nowrap;}
+td{padding:11px 13px;border-bottom:1px solid rgba(31,53,39,.6);vertical-align:top;line-height:1.6;word-break:keep-all;}
+tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:rgba(12,20,16,.55);}
+td.mono,th.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+td.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;}
+
+.call{border:1px solid var(--line);border-left:3px solid var(--gi);background:var(--bg2);padding:16px 20px;margin:18px 0 24px;}
+.call.warn{border-left-color:var(--warn);background:rgba(224,122,82,.05);border-color:rgba(224,122,82,.26);}
+.call.amber{border-left-color:var(--amber);background:rgba(216,160,74,.05);border-color:rgba(216,160,74,.24);}
+.call-t{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--gi);text-transform:uppercase;margin-bottom:9px;}
+.call.warn .call-t{color:var(--warn);} .call.amber .call-t{color:var(--amber);}
+.call p:last-child,.call ul:last-child{margin-bottom:0;}
+ul.list{list-style:none;display:flex;flex-direction:column;gap:7px;margin:0 0 14px;max-width:76ch;}
+ul.list li{padding-left:16px;position:relative;word-break:keep-all;}
+ul.list li::before{content:"▸";position:absolute;left:0;color:var(--ink-dim);}
+
+/* unit cards */
+.units{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);margin:20px 0 26px;}
+.unit{background:var(--card);padding:17px 20px;display:grid;grid-template-columns:74px 1fr;gap:18px;}
+.unit-id{font-family:var(--mono);font-size:17px;color:var(--gi);padding-top:1px;}
+.unit-id small{display:block;font-size:9px;letter-spacing:.12em;color:var(--ink-dim);margin-top:4px;}
+.unit-b h5{font-size:16px;color:var(--ink-bright);font-weight:600;margin-bottom:7px;}
+.unit-seq{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
+.sq{font-family:var(--mono);font-size:10px;letter-spacing:.05em;padding:2px 7px;border:1px solid var(--line);color:var(--ink);background:var(--bg2);}
+.unit-b p{font-size:13.5px;margin-bottom:9px;}
+.carts{display:flex;gap:6px;flex-wrap:wrap;}
+.cart{font-size:11.5px;padding:3px 9px;border:1px dashed rgba(0,255,153,.28);color:var(--seung);background:rgba(0,255,153,.04);}
+.faces{font-family:var(--mono);font-size:10.5px;color:var(--gyeol);letter-spacing:.06em;margin-top:10px;display:block;word-break:keep-all;line-height:1.8;}
+
+/* zone bars */
+.zones{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);margin:18px 0 8px;}
+.zone{background:var(--card);padding:14px 18px;display:grid;grid-template-columns:170px 1fr 82px;gap:16px;align-items:center;}
+.zone-k b{display:block;color:var(--ink-bright);font-size:14px;font-weight:600;}
+.zone-k span{font-size:12px;color:var(--ink-dim);}
+.zone-bar{height:20px;background:var(--bg3);position:relative;}
+.zone-fill{position:absolute;inset:0 auto 0 0;}
+.zone-v{font-family:var(--mono);font-size:14px;color:var(--ink-bright);text-align:right;font-variant-numeric:tabular-nums;}
+.zcap{font-family:var(--mono);font-size:10.5px;color:var(--ink-dim);letter-spacing:.08em;margin-bottom:24px;}
+
+.vs{display:grid;grid-template-columns:1fr auto 1fr;border:1px solid var(--line);margin:18px 0 26px;}
+.vs-side{padding:18px 20px;background:var(--card);}
+.vs-side.bad{background:rgba(224,122,82,.05);}
+.vs-mid{display:flex;align-items:center;justify-content:center;padding:0 16px;background:var(--bg3);font-family:var(--mono);font-size:11px;color:var(--ink-dim);}
+.vs-side h5{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--ink-dim);margin-bottom:10px;text-transform:uppercase;}
+.vs-side ul{list-style:none;display:flex;flex-direction:column;gap:6px;font-size:13.5px;}
+.vs-side li{padding-left:15px;position:relative;word-break:keep-all;}
+.vs-side li::before{content:"·";position:absolute;left:4px;color:var(--ink-dim);}
+.vs-side.bad li::before{content:"✕";font-size:10px;color:var(--warn);left:0;}
+.vs-side.good li::before{content:"✓";font-size:10px;color:var(--gi);left:0;}
+
+footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--ink-dim);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+@media (max-width:800px){
+  h1{font-size:30px;} h2{font-size:21px;} body{font-size:14.5px;}
+  .nav-links{display:none;}
+  .unit{grid-template-columns:1fr;gap:8px;}
+  .zone{grid-template-columns:1fr;gap:8px;} .zone-v{text-align:left;}
+  .vs{grid-template-columns:1fr;} .vs-mid{padding:8px;}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}html{scroll-behavior:auto;}}
+</style>
+
+<nav class="nav">
+  <div class="nav-in">
+    <span class="nav-logo">PIMM · 모듈·시공</span>
+    <div class="nav-links">
+      <a href="#b1">제약</a><a href="#b2">캐리어 규격</a><a href="#b3">통합안</a><a href="#b4">배선</a><a href="#b5">내부시공</a><a href="#b6">전력</a><a href="#b7">견적</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">PIMMSCAPE · BUILD STRATEGY</div>
+  <h1>카라반 <em>모듈 구성</em>과 내부 시공</h1>
+  <div class="hero-sub">MODULE + CARTRIDGE · 벽체에 배선을 넣을 수 없는 조건에서의 제작 전략</div>
+  <p class="hero-lead">일반 방탈출은 벽 뒤로 선을 빼면 끝나지만, 카라반은 벽체가 <strong>얇은 샌드위치 패널</strong>이라 그게 불가능합니다. 모든 장치가 자체 완결된 <strong>모듈 + 카트리지</strong>여야 하고, 그러면 <strong>모듈 개수가 곧 제작비</strong>가 됩니다. 시퀀스를 모으고 숨겨서 <strong>물리 유닛 17 → 9</strong>로 줄인 안입니다.</p>
+  <dl class="head-fig">
+    <div class="hf"><dt>물리 유닛</dt><dd>9<small>표준 캐리어 5 + 특수 3 + 외부 1</small></dd></div>
+    <div class="hf"><dt>유닛 감소</dt><dd>47%<small>통합 전 17유닛 대비</small></dd></div>
+    <div class="hf"><dt>카트리지</dt><dd>27<small>교체 단위 · 유닛당 평균 3종</small></dd></div>
+    <div class="hf"><dt>마감 대상면</dt><dd>30㎡<small>고급마감은 6.6㎡(22%)만</small></dd></div>
+  </dl>
+</header>
+
+<!-- 1 -->
+<section id="b1">
+  <div class="sec-head"><span class="sec-no">01</span><h2>카라반이 방탈출과 다른 점</h2></div>
+  <p class="sec-note">제작 방식을 바꿔야 하는 이유가 다섯 가지 있고, 전부 <strong>비용에 직결</strong>됩니다.</p>
+  <div class="tw"><table>
+    <thead><tr><th style="width:19%">제약</th><th style="width:37%">내용</th><th style="width:44%">제작 방식에 미치는 영향</th></tr></thead>
+    <tbody>
+      <tr><td><strong>벽체 두께</strong></td><td>FRP 외피 + 단열재 + 얇은 내장 합판. 통상 25~35mm. 배선 공간이 없고, 뚫으면 <strong>단열·방수가 깨져 누수</strong>로 이어집니다</td><td>벽 매립 배선 <strong>전면 불가</strong>. 배선은 모듈 내부 또는 노출 덕트로만</td></tr>
+      <tr><td><strong>하중</strong></td><td>내장 벽은 구조벽이 아닙니다. 무거운 장치를 벽에 직결하면 처짐·균열</td><td>하중은 <strong>바닥으로</strong>. 자립형 가구 모듈이 원칙, 벽 고정은 전도 방지용 최소한만</td></tr>
+      <tr><td><strong>출입문 폭</strong></td><td>통상 550~700mm. 큰 벽면 유닛은 <strong>통짜로 반입 불가</strong></td><td>모듈 최대 폭이 문 치수에서 역산됩니다. 이것이 캐리어 규격의 출발점</td></tr>
+      <tr><td><strong>온습도</strong></td><td>단열이 약해 여름 실내 50℃ 이상, 겨울 결로. 계절 편차가 극단적</td><td>접착 기반 마감(필름)은 <strong>들뜸·수축·배면 곰팡이</strong> 위험. §05 참조</td></tr>
+      <tr><td><strong>진동</strong></td><td>이동체 구조. 견인 이력이 없어도 미세 진동·처짐이 누적</td><td>볼트 풀림·커넥터 이탈 대비. <strong>록타이트·잠금 커넥터</strong> 표준화</td></tr>
+    </tbody>
+  </table></div>
+  <div class="call">
+    <div class="call-t">▲ 비용 구조가 바뀝니다</div>
+    <p>일반 방탈출에서 제작비는 <strong>장치 개수</strong>에 비례합니다. 카라반에서는 <strong>모듈 개수</strong>에 비례합니다 — 모듈 하나마다 프레임·전원부·컨트롤러·커넥터·마감·운반·설치·예비부품이 <em class="hl">고정비로</em> 붙기 때문입니다. 장치 33종을 모듈 17개에 나눠 담느냐 9개에 담느냐가, 같은 장치를 만들면서도 비용을 크게 가릅니다.</p>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="b2">
+  <div class="sec-head"><span class="sec-no">02</span><h2>표준 캐리어 규격</h2></div>
+  <p class="sec-note">치수를 <strong>출입문에서 역산</strong>해 하나의 표준으로 고정합니다. 규격이 하나면 프레임 도면 1종, 전원·제어부 1종, 커넥터 1종으로 끝나고 <strong>예비 부품도 공용</strong>이 됩니다.</p>
+  <div class="tw"><table style="min-width:600px">
+    <thead><tr><th style="width:22%">항목</th><th class="mono" style="width:24%">규격</th><th style="width:54%">근거</th></tr></thead>
+    <tbody>
+      <tr><td>캐리어 외폭</td><td class="mono">550 mm</td><td>문 폭 하한 550~700에서 여유 확보. <strong>실측 후 확정</strong></td></tr>
+      <tr><td>깊이</td><td class="mono">450 mm</td><td>통로 폭 확보. 카라반 폭 2,200 기준 양측 배치 시 통로 1,300 남음</td></tr>
+      <tr><td>높이</td><td class="mono">750 / 1,500 / 1,800</td><td>3종만 운용. 하부장형 / 표준형 / 벽면형</td></tr>
+      <tr><td>결합</td><td class="mono">측면 연결 볼트</td><td>캐리어를 옆으로 붙여 연속 벽면 구성. 현장에서 3연·2연으로 조립</td></tr>
+      <tr><td>고정</td><td class="mono">바닥 앵커 + 전도방지</td><td>하중은 바닥. 벽은 전도 방지 브래킷 상단 2점만</td></tr>
+      <tr><td>인터페이스</td><td class="mono">단일 커넥터 1개</td><td>DC 24V + 통신(RS485 또는 CAN) 통합. <strong>데이지체인</strong>으로 다음 캐리어에 전달</td></tr>
+      <tr><td>정면</td><td class="mono">카트리지 슬롯</td><td>기능부는 전량 카트리지. 고장 시 <strong>슬롯만 교체</strong>, 캐리어는 그대로</td></tr>
+      <tr><td>하단</td><td class="mono">레벨링 풋 4</td><td>카라반 바닥은 평탄하지 않습니다. 개별 조정 필수</td></tr>
+    </tbody>
+  </table></div>
+  <div class="call amber">
+    <div class="call-t">◈ 카트리지가 유지보수 비용을 결정합니다</div>
+    <p>운영 중 고장은 <strong>반드시</strong> 납니다. 카트리지 방식이면 스태프가 <strong>공구 없이 뽑아 갈아 끼우고</strong> 다음 팀을 받을 수 있습니다. 캐리어를 열어 수리하는 방식이면 그 회차를 통째로 잃습니다. 27종 카트리지 중 <strong>고빈도 3종</strong>(펜 플로터, 토글 보드, 모노레버)은 예비를 상시 보유하십시오.</p>
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="b3">
+  <div class="sec-head"><span class="sec-no">03</span><h2>통합안 — 한 캐리어, 여러 얼굴</h2></div>
+  <p class="sec-note">모듈을 줄이는 핵심은 <strong>시간 분리</strong>입니다. 한 캐리어가 시퀀스 진행에 따라 <strong>다른 얼굴을 차례로 드러내면</strong>, 물리 유닛은 하나인데 연출은 여러 개가 됩니다. 모듈 수는 내려가고 연출 밀도는 올라갑니다 — 두 목표가 같은 방향입니다.</p>
+
+  <div class="units">
+    <div class="unit"><div class="unit-id">K1<small>표준 캐리어</small></div><div class="unit-b">
+      <h5>메인 콘솔 A — 화면과 입력</h5>
+      <div class="unit-seq"><span class="sq">SEQ.02</span><span class="sq">SEQ.03</span><span class="sq">SEQ.14</span></div>
+      <p>메인 모니터가 시퀀스마다 <strong>역할을 바꿔</strong> 씁니다. 체크인 문제 → 입장 코드 → 선택지 대화. 화면 하나로 세 시퀀스를 소화하므로 별도 유닛이 필요 없습니다.</p>
+      <div class="carts"><span class="cart">메인 모니터</span><span class="cart">토글 6채널 보드</span><span class="cart">선택지 물리버튼</span></div>
+      <span class="faces">얼굴 전환 — ① 토글 문제 → ② 코드 출력 → ③ 솔이 대화 UI</span>
+    </div></div>
+
+    <div class="unit"><div class="unit-id">K2<small>표준 캐리어</small></div><div class="unit-b">
+      <h5>메인 콘솔 B — 다이얼과 하부장</h5>
+      <div class="unit-seq"><span class="sq">SEQ.03</span><span class="sq">SEQ.04</span><span class="sq">SEQ.05</span></div>
+      <p>미니 모니터·입력부가 상단, 열매 다이얼 3개가 중단, 하부장이 하단. <strong>수직으로 3개 시퀀스</strong>가 쌓입니다. 하부장이 열리며 퍼즐판이 나오는 흐름이 그대로 한 캐리어 안에서 완결됩니다.</p>
+      <div class="carts"><span class="cart">미니 모니터·입력부</span><span class="cart">열매 다이얼 3</span><span class="cart">하부장 EM 잠금</span></div>
+      <span class="faces">얼굴 전환 — ① 설문 입력 → ② 다이얼 개방 → ③ 하부장 개방</span>
+    </div></div>
+
+    <div class="unit"><div class="unit-id">K3<small>표준 캐리어</small></div><div class="unit-b">
+      <h5>메인 콘솔 C — 솔이 소통</h5>
+      <div class="unit-seq"><span class="sq">SEQ.11</span><span class="sq">SEQ.12</span><span class="sq">SEQ.13</span></div>
+      <p>모노레버로 화면 속 솔이를 찾고, 번역기 프레임을 걸고, 떨어진 솔방울을 하단 함에서 낚는 <strong>연속 동작이 모두 한 자리</strong>에서 일어납니다. 솔방울 경사로가 캐리어 내부를 지나므로 별도 구조물이 불필요합니다.</p>
+      <div class="carts"><span class="cart">모노레버</span><span class="cart">솔방울 함·경사로</span><span class="cart">번역기 프레임 거치</span></div>
+      <span class="faces">얼굴 전환 — ① 돋보기 탐색 → ② 번역기 장착 → ③ 하단 함 개방</span>
+    </div></div>
+
+    <div class="unit"><div class="unit-id">K4<small>표준 캐리어</small></div><div class="unit-b">
+      <h5>수납 벽면 A — 배터리와 일지</h5>
+      <div class="unit-seq"><span class="sq">SEQ.07</span><span class="sq">SEQ.08</span><span class="sq">SEQ.09</span></div>
+      <p>통나무를 <strong>캐리어 상부에 얹는 탑 카트리지</strong>로 처리하면 독립 유닛이 사라집니다. 배터리를 건져 바로 아래 제어함에 꽂는 동선이 짧아져 <strong>서사도 매끄러워집니다</strong>. 자물쇠 서랍이 그 아래.</p>
+      <div class="carts"><span class="cart">통나무 탑카트리지</span><span class="cart">배터리 제어함</span><span class="cart">숫자자물쇠 서랍</span></div>
+      <span class="faces">얼굴 전환 — ① 통나무 점등 → ② 배터리 삽입·UV 전환 → ③ 서랍 개방</span>
+    </div></div>
+
+    <div class="unit"><div class="unit-id">K5<small>표준 캐리어</small></div><div class="unit-b">
+      <h5>수납 벽면 B — 컬렉션과 클라이맥스</h5>
+      <div class="unit-seq"><span class="sq">SEQ.10</span><span class="sq">SEQ.13</span><span class="sq">SEQ.16</span><span class="sq">SEQ.17</span></div>
+      <p><strong>가장 많이 절감되는 캐리어입니다.</strong> 색 나뭇가지 레버로 히든 서랍(컬렉션)이 열리고, 쇠솔방울이 빈칸에 안착하고, 나중에 <strong>상단 커버가 내려앉으며 빛의 제어반</strong>이 드러납니다. 히든 서랍과 하강 커버는 같은 솔레노이드·실린더 계열이라 <strong>구동부와 제어를 공유</strong>합니다. 소화기 거치대를 옆에 두면 SEQ.16→17 연결이 한 자리에서 끝납니다.</p>
+      <div class="carts"><span class="cart">색나뭇가지 레버뱅크</span><span class="cart">히든서랍 컬렉션</span><span class="cart">하강 커버</span><span class="cart">빛의 제어반</span><span class="cart">소화기 거치</span></div>
+      <span class="faces">얼굴 전환 — ① 나뭇가지 벽 → ② 히든 서랍 개방 → ③ 커버 하강·제어반 노출 → ④ 소화기 발광</span>
+    </div></div>
+
+    <div class="unit"><div class="unit-id">U1<small>특수 · 옥외</small></div><div class="unit-b">
+      <h5>엔트리 유닛</h5>
+      <div class="unit-seq"><span class="sq">SEQ.01</span></div>
+      <p>도어 옆 소형 방수 유닛. 도어락은 기성품이므로 실제 제작은 <strong>토큰 리더 액자만</strong>입니다. 옥외이므로 IP 등급과 결로 대책이 필요하고, 전원은 실내에서 문틀 상부를 돌아 인입합니다.</p>
+      <div class="carts"><span class="cart">토큰 리더 액자</span><span class="cart">도어락(기성)</span></div>
+    </div></div>
+
+    <div class="unit"><div class="unit-id">U2<small>특수</small></div><div class="unit-b">
+      <h5>창가 선반 유닛</h5>
+      <div class="unit-seq"><span class="sq">SEQ.06</span><span class="sq">SEQ.15</span></div>
+      <p>기존 카라반 창을 그대로 쓰고 창틀 옆에 얇은 유닛을 덧댑니다. 화분 감지·솔이 실린더·리드스위치·토큰 센서·연기 노즐이 <strong>전부 창 주변</strong>에 모여 있어 자연스럽게 하나가 됩니다. 실린더는 선반 위를 미끄러지므로 별도 프레임이 불필요합니다.</p>
+      <div class="carts"><span class="cart">화분 감지</span><span class="cart">솔이 실린더</span><span class="cart">창문 리드스위치·토큰센서</span><span class="cart">연기 노즐</span></div>
+    </div></div>
+
+    <div class="unit"><div class="unit-id">U3<small>특수</small></div><div class="unit-b">
+      <h5>상부 행잉 유닛</h5>
+      <div class="unit-seq"><span class="sq">SEQ.18</span></div>
+      <p>펜 플로터 전용. 손이 닿지 않는 상부에 비접촉 매립해야 하므로 유일하게 <strong>천장에 매다는</strong> 유닛입니다. 카라반 천장은 하중이 약하니 <strong>측벽 상부 두 점 지지</strong>로 설계하고, 예비기 슬롯을 나란히 두어 고장 시 즉시 전환합니다.</p>
+      <div class="carts"><span class="cart">펜 플로터</span><span class="cart">예비기 슬롯</span></div>
+    </div></div>
+
+    <div class="unit"><div class="unit-id">X1<small>외부</small></div><div class="unit-b">
+      <h5>야외 텐트 유닛</h5>
+      <div class="unit-seq"><span class="sq">SEQ.19</span></div>
+      <p>카라반과 물리적으로 분리된 독립 유닛. 전원·신호를 카라반에서 끌지 말고 <strong>자체 전원 + 무선 트리거</strong>로 구성해야 설치와 철거가 쉽습니다. 단독 테마 확정 여부에 따라 규모가 달라지므로 <strong>마지막에 발주</strong>하십시오.</p>
+      <div class="carts"><span class="cart">프로젝터</span><span class="cart">씨앗 감지</span></div>
+    </div></div>
+  </div>
+
+  <div class="call">
+    <div class="call-t">▲ 통합 효과</div>
+    <p>통합 없이 위치별로 나누면 <strong>17 물리 유닛</strong>이 나옵니다. 위 안은 <strong>9 유닛</strong>으로, <em class="hl">47% 감소</em>입니다. 유닛당 고정비(프레임·전원·컨트롤러·커넥터·운반·설치·예비)가 8회분 줄어듭니다. 장치 자체는 하나도 빼지 않았습니다.</p>
+    <p style="margin-top:10px;">덤으로 <strong>제어 계통이 단순해집니다</strong> — 컨트롤러 9개, 커넥터 9개, 데이지체인 1줄. 17유닛이면 배선만으로도 카라반 안이 복잡해집니다.</p>
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="b4">
+  <div class="sec-head"><span class="sec-no">04</span><h2>배선 — 숨기지 말고 조형으로</h2></div>
+  <p class="sec-note">벽에 못 넣으니 남는 선택지는 둘입니다. 억지로 숨기거나, <strong>드러내되 의장화</strong>하거나. 이 테마에서는 후자가 명백히 유리합니다.</p>
+  <p>캐리어 간 배선은 데이지체인 <strong>1줄</strong>이면 되지만, 조명은 다릅니다 — 메인·UV 전역·반딧불이 무드 5종이 천장과 벽 상부를 가로질러야 합니다. 이걸 몰딩 덕트로 처리하면 "선을 숨기려다 실패한 티"가 납니다.</p>
+  <div class="call">
+    <div class="call-t">▲ 덩굴 덕트</div>
+    <p>배선 경로를 <strong>덩굴·나뭇가지 조형으로 감싸는</strong> 방식을 권합니다. 이 테마의 컨셉 이미지에는 이미 카라반 외부에 덩굴이 감겨 있고, 내부도 숲이 침범해 들어온 톤입니다. <strong>배선 덕트가 곧 미술</strong>이 되므로 덕트 비용이 장식 비용으로 상쇄되고, 유지보수 시 <strong>덩굴을 젖히고 접근</strong>할 수 있어 점검성도 좋아집니다.</p>
+    <p style="margin-top:10px;">추가 이점 — SEQ.08 UV 전환에서 덩굴에 UV 반응 도료를 얹으면, <strong>배선 경로가 그대로 발광 연출</strong>이 됩니다. 별도 조명 없이 공간 전체가 살아납니다.</p>
+  </div>
+  <ul class="list">
+    <li>백본은 <strong>DC 24V + 통신 1선</strong>. 캐리어 간 데이지체인, 각 캐리어에서 내부 전압으로 강압</li>
+    <li>AC는 <strong>모니터·프로젝터·연기 머신만</strong> 개별 인입. 나머지는 전부 저압으로 — 아동 접촉 환경이라 안전 이득이 큽니다</li>
+    <li>커넥터는 <strong>잠금형 단일 규격</strong>. 진동 이탈 방지 + 스태프가 오결선할 수 없게</li>
+    <li>천장 횡단은 <strong>1회로 제한</strong>. 여러 번 건너면 조형으로도 못 덮습니다</li>
+  </ul>
+</section>
+
+<!-- 5 -->
+<section id="b5">
+  <div class="sec-head"><span class="sec-no">05</span><h2>내부 시공 — 필름을 권하지 않습니다</h2></div>
+  <p class="sec-note">비용 때문만이 아닙니다. <strong>필름은 이 테마에서 세 가지 이유로 불리</strong>합니다.</p>
+
+  <div class="vs">
+    <div class="vs-side bad">
+      <h5>인테리어 필름 전면 시공</h5>
+      <ul>
+        <li><strong>온습도</strong> — 카라반 여름 실내 50℃ 이상, 겨울 결로. 접착 기반이라 들뜸·수축·배면 곰팡이가 실질 위험</li>
+        <li><strong>질감</strong> — 필름 우드는 <strong>패턴이 반복</strong>되고 깊이가 없습니다. 이 테마의 핵심은 "오래된 목재"인데 필름은 "새것 같은 균일함"을 만듭니다</li>
+        <li><strong>단가</strong> — 카라반 내부는 곡면·요철·몰딩이 많아 <strong>시공 난이도가 일반 실내의 1.5~2배</strong>. 면적은 작은데 단가가 뜁니다</li>
+        <li>재시공 시 기존 필름 제거 공정이 추가로 붙습니다</li>
+      </ul>
+    </div>
+    <div class="vs-mid">권장</div>
+    <div class="vs-side good">
+      <h5>3존 차등 마감</h5>
+      <ul>
+        <li><strong>보이는 곳만 고급으로</strong> — 이 테마는 명도 40%, 2200~2700K의 어두운 공간입니다. 빛이 닿지 않는 면은 <strong>사실상 보이지 않습니다</strong></li>
+        <li>고급 마감 대상이 전체의 <strong>22%</strong>로 줄어듭니다</li>
+        <li>도장은 <strong>얼룩·에이징 표현</strong>이 가능해 컨셉에 오히려 부합</li>
+        <li>온습도 변화에 강하고, 부분 보수가 쉽습니다</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>물량 산출 <span class="t">5m급 가정 · 실측으로 대체</span></h3>
+  <div class="tw"><table style="min-width:520px">
+    <thead><tr><th style="width:56%">항목</th><th class="mono" style="width:22%">면적</th><th style="width:22%">비고</th></tr></thead>
+    <tbody>
+      <tr><td>벽면 전개 (5.0 × 2.2 × 1.95m)</td><td class="num">28.1 ㎡</td><td>—</td></tr>
+      <tr><td>개구부 공제 (창3 + 문1)</td><td class="num">−5.0 ㎡</td><td>—</td></tr>
+      <tr><td><strong>캐리어 은폐면 공제</strong></td><td class="num">−4.1 ㎡</td><td>0.55 × 1.5 × 5기</td></tr>
+      <tr><td>벽면 실마감</td><td class="num">19.0 ㎡</td><td>—</td></tr>
+      <tr><td>천장</td><td class="num">11.0 ㎡</td><td>—</td></tr>
+      <tr><td><strong>마감 대상 합계</strong></td><td class="num"><strong>30.0 ㎡</strong></td><td>바닥 11.0㎡ 별도</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:13.5px;color:var(--ink-dim);margin-top:-12px;">캐리어 5기가 벽면 4.1㎡를 가립니다 — <strong style="color:var(--ink)">가려지는 면은 마감이 불필요</strong>합니다. 캐리어 배치 도면이 확정되면 이 공제 면적이 더 늘어날 수 있습니다.</p>
+
+  <div class="zones">
+    <div class="zone"><span class="zone-k"><b>A존 · 실목/무늬목 + 오일</b><span>직시·접촉면. 캐리어 인접, 시선 집중부</span></span><span class="zone-bar"><span class="zone-fill" style="width:22%;background:linear-gradient(90deg,#7A5423,#D8A04A)"></span></span><span class="zone-v">6.6 ㎡</span></div>
+    <div class="zone"><span class="zone-k"><b>B존 · 프라이머 + 다크 스테인 도장</b><span>배경 벽면 일반부</span></span><span class="zone-bar"><span class="zone-fill" style="width:58%;background:linear-gradient(90deg,#2A4A34,#4E7A5C)"></span></span><span class="zone-v">17.4 ㎡</span></div>
+    <div class="zone"><span class="zone-k"><b>C존 · 무광 흑색 또는 무처리</b><span>천장 상부·가구 배면·비직시부</span></span><span class="zone-bar"><span class="zone-fill" style="width:20%;background:linear-gradient(90deg,#1A1A1A,#333)"></span></span><span class="zone-v">6.0 ㎡</span></div>
+  </div>
+  <p class="zcap">필름 전면 시공 시 대상 30.0㎡ → 3존 차등 시 고급마감 6.6㎡ (22%)</p>
+
+  <h3>시공 실무 <span class="t">CAUTIONS</span></h3>
+  <ul class="list">
+    <li><strong>기존 PVC 코팅면 위에는 밀착 프라이머 필수</strong> — 이걸 건너뛰면 도막이 손톱에 긁힙니다. 카라반 내장재는 대부분 코팅 합판입니다</li>
+    <li><strong>곡면 코너는 마감하지 마십시오</strong> — 필름도 목재도 어렵습니다. 덩굴·이끼 조형으로 덮는 것이 싸고 예쁩니다</li>
+    <li><strong>기존 창틀·수납장은 그대로 두고 도장만</strong> — 카라반 느낌이 남아 있는 게 "숲속 카라반"이라는 설정에 오히려 맞습니다. 완전히 다른 공간으로 만들 이유가 없습니다</li>
+    <li><strong>바닥은 마감 대상에서 제외</strong> — 어두워서 안 보이고, 통행 마모가 심해 재시공 주기가 짧습니다. 러그나 매트로 처리</li>
+    <li><strong>A존 시료를 현장 조명 아래에서 승인</strong> — 2200K 전구색에서는 색이 크게 달라 보입니다. 형광등 아래 승인하면 반드시 어긋납니다</li>
+  </ul>
+</section>
+
+<!-- 6 -->
+<section id="b6">
+  <div class="sec-head"><span class="sec-no">06</span><h2>전력</h2></div>
+  <p class="sec-note">캠핑장 사이트 전원은 용량이 제한적입니다. <strong>실측 전에는 장치 사양을 확정할 수 없습니다</strong>(D3).</p>
+  <div class="tw"><table style="min-width:600px">
+    <thead><tr><th style="width:26%">부하</th><th class="mono" style="width:16%">성격</th><th style="width:58%">비고</th></tr></thead>
+    <tbody>
+      <tr><td><strong>연기 머신</strong></td><td class="mono">최대 단일</td><td>기동 시 순간 부하가 가장 큽니다. <strong>전용 회로 권장</strong>. 용량이 부족하면 저용량 헤이저로 대체하거나, 조명·영상 기반 연기 표현으로 전환(결정사항 D6)</td></tr>
+      <tr><td>프로젝터 (X1)</td><td class="mono">외부</td><td>야외 유닛은 <strong>자체 전원</strong>으로 분리하는 것이 안전하고 설치도 쉽습니다</td></tr>
+      <tr><td>모니터 3대</td><td class="mono">상시</td><td>K1·K2·K3. 상시 구동이므로 대기전력도 누적됩니다</td></tr>
+      <tr><td>조명 계통</td><td class="mono">상시</td><td>메인 + UV 전역 + 무드 5종. <strong>메인은 완전 소등이 필요</strong>하므로 조광 회로 분리</td></tr>
+      <tr><td>솔레노이드·실린더</td><td class="mono">순간</td><td>K5 하강 커버, U2 실린더. 동시 구동을 피하도록 시퀀서에서 <strong>시차 제어</strong></td></tr>
+      <tr><td>제어·센서</td><td class="mono">미소</td><td>24V 백본. 무시 가능한 수준</td></tr>
+    </tbody>
+  </table></div>
+  <div class="call warn">
+    <div class="call-t">⚑ 실측 항목</div>
+    <p>W1 카라반 실측 시 <strong>반드시 함께 확인</strong>: 사이트 인입 용량(kW), 분전반 회로 수, 누전차단기 사양, 접지 유무, 통신 회선(SMS·QR용). 용량이 부족하면 <strong>연기 머신과 프로젝터가 먼저 잘립니다</strong> — 두 항목 다 연출 핵심이므로, 용량 확인 전에 발주하지 마십시오.</p>
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="b7">
+  <div class="sec-head"><span class="sec-no">07</span><h2>견적 요청 골격</h2></div>
+  <p class="sec-note">아래는 <strong>수량 산출까지</strong>입니다. 단가는 업체 견적으로 채워야 하며, 이 문서에서 금액을 추정하지 않았습니다 — 근거 없는 숫자는 협상에서 불리하게 작용합니다.</p>
+  <div class="tw"><table>
+    <thead><tr><th style="width:8%">구분</th><th style="width:30%">항목</th><th class="mono" style="width:14%">수량</th><th style="width:48%">견적 시 명시할 것</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">A</td><td>표준 캐리어 프레임·외장</td><td class="mono">5기</td><td>규격 동일 — <strong>1종 도면 5회 제작</strong>임을 명시해 단가 인하 요인으로 사용</td></tr>
+      <tr><td class="mono">A</td><td>특수 유닛</td><td class="mono">3기</td><td>U1 옥외 방수등급 / U2 창틀 덧댐 / U3 천장 매달림 — 각각 조건이 다름</td></tr>
+      <tr><td class="mono">A</td><td>외부 유닛</td><td class="mono">1기</td><td>단독 테마 확정(D2) 후 발주. <strong>옵션 분리</strong> 견적</td></tr>
+      <tr><td class="mono">B</td><td>카트리지</td><td class="mono">27종</td><td>고빈도 3종은 <strong>예비 1세트 포함</strong> 단가로</td></tr>
+      <tr><td class="mono">C</td><td>제어부 (컨트롤러+전원)</td><td class="mono">9세트</td><td>규격 통일 — 공용 예비 1세트 별도</td></tr>
+      <tr><td class="mono">C</td><td>배선 하네스·커넥터</td><td class="mono">1식</td><td>데이지체인 1줄 + 조명 계통. 잠금형 단일 규격</td></tr>
+      <tr><td class="mono">D</td><td>조명</td><td class="mono">1식</td><td>메인 조광 + UV 전역 + 무드 5종 + 비상 조도. <strong>회로 분리 조건 명시</strong></td></tr>
+      <tr><td class="mono">E</td><td>내부 마감 A존</td><td class="mono">6.6 ㎡</td><td>실목/무늬목 + 오일. 시료 현장 승인 조건</td></tr>
+      <tr><td class="mono">E</td><td>내부 마감 B존</td><td class="mono">17.4 ㎡</td><td><strong>밀착 프라이머 포함</strong> 단가. 기존 PVC 코팅면 위 시공</td></tr>
+      <tr><td class="mono">E</td><td>내부 마감 C존</td><td class="mono">6.0 ㎡</td><td>무광 흑색 또는 무처리</td></tr>
+      <tr><td class="mono">E</td><td>덩굴 덕트 조형</td><td class="mono">1식</td><td>배선 은폐 겸 장식. <strong>UV 반응 도료 포함</strong> 여부 명시</td></tr>
+      <tr><td class="mono">F</td><td>반입·설치·정합</td><td class="mono">1식</td><td>문 폭 제약으로 <strong>분할 반입 + 현장 결합</strong> 조건 명시</td></tr>
+      <tr><td class="mono">G</td><td>미디어 (영상·음성·UI)</td><td class="mono">1식</td><td>별도 트랙. 제작계획 §04 트랙 C·D 참조</td></tr>
+    </tbody>
+  </table></div>
+  <div class="call">
+    <div class="call-t">▲ 견적서에서 반드시 분리 요청할 것</div>
+    <ul class="list">
+      <li><strong>캐리어 5기를 1종 규격으로</strong> 묶어 견적받기 — 개별 주문으로 받으면 5종 제작 단가가 나옵니다</li>
+      <li><strong>X1 야외 유닛은 옵션 분리</strong> — D2가 미확정이므로 본 계약에 넣으면 범위 분쟁이 생깁니다</li>
+      <li><strong>카트리지 예비분은 별도 라인</strong> — 본 견적에 섞이면 나중에 추가 구매 단가가 뜁니다</li>
+      <li><strong>연기 머신은 조건부</strong> — 전력 실측 결과에 따라 삭제 가능하도록 별도 항목으로</li>
+    </ul>
+  </div>
+  <div class="call amber">
+    <div class="call-t">◈ 여전히 선행되어야 하는 것</div>
+    <p>이 문서의 수량은 <strong>5m급 카라반 가정치</strong>입니다. <strong>W1 실측(D3)</strong> — 내부 치수, <strong>출입문 폭</strong>, 벽체 구성, 전력 용량, 통신 회선 — 없이는 캐리어 규격도 마감 물량도 확정되지 않습니다. 실측은 이 계획 전체의 시작점이며, <strong>지금 가장 먼저 잡아야 할 일정</strong>입니다.</p>
+  </div>
+</section>
+
+<footer>
+  <span>PIMMSCAPE · 초록의 소리 — 카라반 모듈 구성과 내부 시공</span>
+  <span>PIMM ARTWORKS CORP.</span>
+</footer>
+
+</div>
