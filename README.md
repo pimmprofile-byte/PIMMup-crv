@@ -21,6 +21,7 @@ PIMMscape · 파주 평화누리 캠핑장 숲속 카라반 테마 — 기획 �
 | [`docs/visual-scenario.html`](docs/visual-scenario.html) | **비주얼 시나리오** — 초안(청소년 타겟). 17슬라이드 인터랙티브. 대사 · 지문 · 연출 톤 참조용 |
 | [`docs/production-plan.html`](docs/production-plan.html) | **제작계획** — 스토리 구조 분석, 19시퀀스 시간/장치 밀도 분석, P0~P5 실행계획, 장치 BOM 33종, 리스크 10건, 결정사항 7건 |
 | [`docs/theme-tone.html`](docs/theme-tone.html) | **테마톤 분석** — 컨셉 이미지 47컷 색상 실측, 조명 3상태, 재질 언어, 시공 컬러 스펙, 설계 충돌 4건 |
+| [`docs/playtime-estimate.html`](docs/playtime-estimate.html) | **플레이타임 산정** — 12세 인지부하 모델. 19시퀀스 풀이 절차 분해, 스텝별 소요시간, 팀 편차 분포, 병목 4곳, 6분 31초 절감 튜닝안 |
 
 HTML을 그대로 열면 됩니다. 별도 빌드나 의존성이 없습니다.
 
@@ -46,6 +47,16 @@ reference/
   images/steps/     SEQ별 컨셉 이미지 20컷 (진행표 임베드분 추출)
   images/sheets/    컨택트시트 · 캐릭터/조명/소품 비교 이미지
   extracted/        원본 HTML에서 추출한 텍스트 및 데이터 스크립트
+  model/            플레이타임 산정 모델 (python)
+```
+
+플레이타임 수치를 조정하려면 `reference/model/timing_model.py`의 `STEPS` 배열에서
+스텝별 고정 · 가변 · 시행착오 값을 고치고 실행하면 됩니다.
+`timing_tuning.py`는 튜닝안 적용 전후를 비교합니다. 두 스크립트 모두 의존성이 없습니다.
+
+```
+python3 reference/model/timing_model.py    # 스텝별 산정표 + 분포
+python3 reference/model/timing_tuning.py   # 튜닝 전후 비교
 ```
 
 `extracted/step-progression.data.js`에 19시퀀스 전체 데이터(`STEPS` 배열)가 들어 있습니다 —
